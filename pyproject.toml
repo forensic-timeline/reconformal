@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "reconsadfc"
+version = "0.1.0"
+description = "Forensic event reconstruction and timeline correlation for SADFC-style data"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Muhammad Nur Yasir Utomo, Hudan Studiawan, Arkananta Masarief, Kemal Tangguh Aji Rajasa" }
+]
+keywords = ["forensics", "timeline", "incident-response", "sadfc", "pandas"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Information Technology",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Security",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = [
+  "pandas>=1.5",
+  "matplotlib>=3.6",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+]
+
+[project.urls]
+Homepage = "https://github.com/forensic-timeline/reconsadfc"
+Repository = "https://github.com/forensic-timeline/reconsadfc"
+Issues = "https://github.com/forensic-timeline/reconsadfc/issues"
+
+[project.scripts]
+reconsadfc = "reconsadfc.reconsadfc:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["reconsadfc*"]
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "."
+]
