@@ -3,6 +3,7 @@ import argparse
 import sys
 import re
 import os
+import ntpath
 import pandas as pd
 from typing import List
 from collections import Counter
@@ -92,7 +93,7 @@ class PlasoToFootprint:
                 if not proc_match:
                     proc_match = re.search(r"'([^']+\.exe)'", message, re.IGNORECASE)
                 exe = proc_match.group(1) if proc_match else 'unknown.exe'
-                return ('Process Creation', {'Executable Name': os.path.basename(exe)}, parser, None)
+                return ('Process Creation', {'Executable Name': ntpath.basename(exe)}, parser, None)
 
             if eid in (1074, 1076, 6006, 6008, 13, 41):
                 return ('Shutdown time', {'Windows Event ID': str(eid)}, parser, None)
@@ -108,7 +109,7 @@ class PlasoToFootprint:
         elif parser == 'winreg/userassist':
             match = re.search(r'Value name:\s*(.+\.exe)', message, re.IGNORECASE)
             if match:
-                prog = os.path.basename(match.group(1).strip())
+                prog = ntpath.basename(match.group(1).strip())
                 return ('Program opened', {'Program name': prog}, parser, None)
             return None
 
@@ -121,7 +122,7 @@ class PlasoToFootprint:
         elif parser == 'winpca_dic':
             match = re.search(r'\[(.+?\.exe)\]', message, re.IGNORECASE)
             if match:
-                prog = os.path.basename(match.group(1).strip())
+                prog = ntpath.basename(match.group(1).strip())
                 return ('Program opened', {'Program name': prog}, parser, None)
             return None
 
@@ -142,7 +143,7 @@ class PlasoToFootprint:
             fname = match.group(1) if match else message[:100]
             user_match = re.search(r'Users\\([^\\]+)\\', message)
             user = user_match.group(1) if user_match else 'User'
-            return ('File Downloaded', {'User': user, 'File Name': os.path.basename(fname)}, parser, None)
+            return ('File Downloaded', {'User': user, 'File Name': ntpath.basename(fname)}, parser, None)
 
         return None
 
