@@ -1,23 +1,27 @@
-# reconsadfc
+﻿# reconsadfc
+
+[![PyPI version](https://badge.fury.io/py/reconsadfc.svg)](https://badge.fury.io/py/reconsadfc)
+[![Python Version](https://img.shields.io/pypi/pyversions/reconsadfc.svg)](https://pypi.org/project/reconsadfc/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Forensic event reconstruction and relationship analysis for SADFC-style footprint data.
 
 This project provides a DataFrame-first pipeline to:
 
-- filter and preprocess forensic footprint data,
-- extract subjects, objects, and events,
-- build support and entity-event relationships,
-- compute event correlations over time,
-- analyze and visualize inferred timelines.
+- Filter and preprocess forensic footprint data,
+- Extract subjects, objects, and events,
+- Build support and entity-event relationships,
+- Compute event correlations over time,
+- Analyze and visualize inferred timelines.
 
 ## Features
 
-- Data ingestion and filtering from CSV files (`source == WEBHIST`)
+- Data ingestion and filtering from Plaso CSV files
 - Entity extraction for common event types (web visit, process creation, search activity, file activity)
 - Relationship modeling:
-	- footprint-to-entity/event support
-	- participation (subject-event)
-	- usage (event-object)
+  - Footprint-to-entity/event support
+  - Participation (subject-event)
+  - Usage (event-object)
 - Temporal and contextual correlation scoring
 - Timeline filtering based on type-level correlation statistics
 - Built-in timeline plotting with Matplotlib
@@ -26,38 +30,57 @@ This project provides a DataFrame-first pipeline to:
 
 ### From PyPI
 
-After publishing, install with:
+Install the package directly from PyPI (once published):
 
-```bash
+`bash
 pip install reconsadfc
-```
+`
 
 ### From source (local development)
 
-```bash
-git clone <your-repository-url>
-cd temp-reconformal
+`bash
+git clone https://github.com/forensic-timeline/reconsadfc
+cd reconsadfc
 pip install -e .
-```
+`
 
 ## Requirements
 
 - Python 3.9+
-- pandas
-- matplotlib
+- pandas >= 1.5
+- matplotlib >= 3.6
 
 ## Quick Start
 
-```python
-from reconformal import (
-		DataProcessor,
-		KnowledgeRepresentation,
-		TimelineReconstruction,
-		RelationshipAnalysis,
+The easiest way to use the library is via the 
+un_pipeline function mapping, which automates file reading and DataFrame generation.
+
+`python
+from reconsadfc import run_pipeline
+
+# Run the complete reconstruction pipeline
+outputs = run_pipeline(
+    input_dir="./data",
+    output_dir="./outputs",
+    threshold=0.0,
+    draw_graph=True,
+    graph_filename="filtered_timeline.png"
 )
 
+# Access individual generated datasets
+timeline_df = outputs['timeline_df']
+correlation_df = outputs['correlation_df']
+print("Generated Timeline Records:", len(timeline_df))
+`
+
+### Advanced Usage (Step-by-step)
+If you need finer execution control, you can import individual modules:
+`python
+from reconsadfc import DataProcessor, TimelineReconstruction, RelationshipAnalysis
+from reconsadfc.reconsadfc import KnowledgeRepresentation
+
 # 1) Load and filter footprints
-processor = DataProcessor(file_dir="./data", save_json=False)
+processor = DataProcessor(file_dir="./data")
 combined_df = processor.process_files()
 
 # 2) Build knowledge representation
@@ -73,94 +96,61 @@ correlation_df = timeline_builder.calculate_correlation(timeline_df)
 # 4) Analyze timeline quality
 analysis = RelationshipAnalysis(kr)
 scored_timeline_df = analysis.filter_events_based_on_avg_correlation(
-		correlation_df=correlation_df,
-		timeline_df=timeline_df,
-		threshold=0.0,
+    correlation_df=correlation_df,
+    timeline_df=timeline_df,
+    threshold=0.0,
 )
 updated_timeline_df = analysis.update_timeline_df(scored_timeline_df)
-
-# Optional plot
-analysis.draw_timeline_graph(updated_timeline_df)
-
-# Optional metrics
-counts = analysis.count_classification_groups(updated_timeline_df)
-print(counts)
-```
+`
 
 ## CLI Usage
 
 After installation, run from PowerShell or any shell:
 
-```powershell
-reconformal-cli --input-dir .\data --output-dir .\outputs --threshold 0.0 --draw-graph
-```
+`bash
+reconsadfc --input-dir ./data --output-dir ./outputs --threshold 0.0 --draw-graph
+`
 
 You can also run as a Python module:
 
-```powershell
-python -m reconformal --input-dir .\data --output-dir .\outputs
-```
+`bash
+python -m reconsadfc --input-dir ./data --output-dir ./outputs
+`
 
-Generated outputs are written as CSV files, including timeline, correlation,
-relationship, summary, and metrics artifacts.
+Generated outputs are written as CSV files, including timeline, correlation, relationship, summary, and metrics artifacts.
 
 ## Main Components
 
-- `DataProcessor`
-	- Reads CSV files from a directory
-	- Filters rows where `source` is `WEBHIST`
-- `EntityExtractor`
-	- Converts footprint rows into normalized subject/object/event records
-- `RelationshipManager`
-	- Deduplicates entities and builds relationship tables
-- `KnowledgeRepresentation`
-	- Orchestrates extraction and stores all derived DataFrames
-- `TimelineReconstruction`
-	- Builds deduplicated timeline and computes pairwise correlations
-- `RelationshipAnalysis`
-	- Aggregates correlation scores, filters events, enriches timeline, and plots results
+- DataProcessor: Reads CSV files from a directory and combines valid forensic evidence.
+- PlasoToFootprint: Processes and detects appropriate browser/system entities based on Plaso evidence definitions.
+- EntityExtractor: Converts footprint rows into normalized subject/object/event records.
+- RelationshipManager: Deduplicates entities and builds relationship tables.
+- TimelineReconstruction: Builds deduplicated timeline and computes pairwise correlations.
+- RelationshipAnalysis: Aggregates correlation scores, filters events, enriches timeline, and plots results.
 
 ## Data Assumptions
 
-Input footprint data is expected to include fields commonly used by the pipeline, such as:
+Input footprint data is expected to include fields commonly used by the pipeline from Plaso CSVs:
 
-- `id`
-- `type`
-- `source`
-- `date_time_min`
-- optional event metadata (for example `keys`, `plugin`, `files`, `filename`)
-
-## PyPI Publishing Checklist
-
-Before publishing, ensure you have:
-
-1. Package metadata configured (`pyproject.toml` preferred).
-2. This README referenced as the long description.
-3. Version bumped correctly.
-4. License file included.
-5. Source distribution and wheel built successfully.
-
-Typical commands:
-
-```bash
-python -m pip install --upgrade build twine
-python -m build
-python -m twine check dist/*
-python -m twine upload dist/*
-```
+- parser
+- message
+- display_name
+- datetime
+- filename
 
 ## Project Structure
 
-Current minimal structure:
-
-- `reconformal/reconformal.py` - core implementation
-- `reconformal/cli.py` - CLI parser and command runner
-- `reconformal/__main__.py` - module execution entry point
-- `reconformal/__init__.py` - package exports
-- `pyproject.toml` - packaging metadata and console scripts
-- `README.md` - project documentation
-- `LICENSE` - MIT license
-- `fer-sadfc.ipynb` - notebook exploration
+- 
+reconsadfc/reconsadfc.py - Core implementation and pipeline
+- 
+reconsadfc/__main__.py - Module execution entry point
+- 
+reconsadfc/__init__.py - Package exports
+- pyproject.toml - Packaging metadata and console scripts
+- 	ests/ - Unit tests for package modules
+- docs/ - Sphinx documentation files
+- README.md - Project documentation
+- LICENSE - MIT license
 
 ## License
 
