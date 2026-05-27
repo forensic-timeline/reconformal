@@ -2,7 +2,7 @@ import pytest
 import pandas as pd
 from pathlib import Path
 import json
-from reconsadfc.reconsadfc import DataProcessor
+from reconformal.reconformal import DataProcessor
 
 def test_process_files_single_csv(mocker):
     processor = DataProcessor("dummy.csv")
@@ -11,7 +11,7 @@ def test_process_files_single_csv(mocker):
     mocker.patch("pathlib.Path.glob", return_value=[])
     
     mock_df = pd.DataFrame([{'id': 1, 'type': 'Web Visit'}])
-    mocker.patch("reconsadfc.reconsadfc.PlasoToFootprint.process_csv", return_value=mock_df)
+    mocker.patch("reconformal.reconformal.PlasoToFootprint.process_csv", return_value=mock_df)
     
     res = processor.process_files()
     assert len(res) == 1
@@ -44,7 +44,7 @@ def test_process_files_directory(mocker):
     mock_df_1 = pd.DataFrame([{'type': 'A'}])
     mock_df_2 = pd.DataFrame([{'type': 'B'}])
     
-    mocker.patch("reconsadfc.reconsadfc.PlasoToFootprint.process_csv", side_effect=[mock_df_1, mock_df_2])
+    mocker.patch("reconformal.reconformal.PlasoToFootprint.process_csv", side_effect=[mock_df_1, mock_df_2])
     
     res = processor.process_files()
     assert len(res) == 2

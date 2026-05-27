@@ -3,8 +3,8 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "reconsadfc"
-version = "0.1.0"
+name = "reconformal"
+version = "0.2.0"
 description = "Forensic event reconstruction and timeline correlation for SADFC-style data"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -42,16 +42,16 @@ docs = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/forensic-timeline/reconsadfc"
-Repository = "https://github.com/forensic-timeline/reconsadfc"
-Issues = "https://github.com/forensic-timeline/reconsadfc/issues"
+Homepage = "https://github.com/forensic-timeline/reconformal"
+Repository = "https://github.com/forensic-timeline/reconformal"
+Issues = "https://github.com/forensic-timeline/reconformal/issues"
 
 [project.scripts]
-reconsadfc = "reconsadfc.reconsadfc:main"
+reconformal = "reconformal.reconformal:main"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["reconsadfc*"]
+include = ["reconformal*"]
 
 [tool.pytest.ini_options]
 pythonpath = [

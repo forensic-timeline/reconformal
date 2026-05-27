@@ -1,6 +1,6 @@
 import pytest
 import pandas as pd
-from reconsadfc.reconsadfc import RelationshipManager
+from reconformal.reconformal import RelationshipManager
 
 @pytest.fixture
 def rm():

@@ -1,7 +1,7 @@
 API Reference
 =============
 
-.. automodule:: reconsadfc.reconsadfc
+.. automodule:: reconformal.reconformal
    :members:
    :undoc-members:
    :show-inheritance:

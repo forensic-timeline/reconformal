@@ -1,18 +1,18 @@
-.. reconsadfc documentation master file
+.. reconformal documentation master file
 
-Welcome to reconsadfc's documentation!
-======================================
+Welcome to reconformal's documentation!
+========================================
 
-.. image:: https://img.shields.io/pypi/v/reconsadfc.svg
-   :target: https://pypi.org/project/reconsadfc/
-.. image:: https://img.shields.io/pypi/pyversions/reconsadfc.svg
-   :target: https://pypi.org/project/reconsadfc/
+.. image:: https://img.shields.io/pypi/v/reconformal.svg
+   :target: https://pypi.org/project/reconformal/
+.. image:: https://img.shields.io/pypi/pyversions/reconformal.svg
+   :target: https://pypi.org/project/reconformal/
 .. image:: https://img.shields.io/badge/License-MIT-yellow.svg
    :target: https://opensource.org/licenses/MIT
 
 **Forensic event reconstruction and timeline correlation for SADFC-style data.**
 
-`reconsadfc` is a robust Python library and CLI tool designed for digital forensic investigators and researchers. It provides a DataFrame-first pipeline to process forensic footprint data, extract meaningful relationships (subjects, objects, events), and compute event correlations over time. By inferring and analyzing semantic timelines, it helps uncover complex incident patterns from WEBHIST and other common forensic data sources.
+`reconformal` is a robust Python library and CLI tool designed for digital forensic investigators and researchers. It provides a DataFrame-first pipeline to process forensic footprint data, extract meaningful relationships (subjects, objects, events), and compute event correlations over time. By inferring and analyzing semantic timelines, it helps uncover complex incident patterns from WEBHIST and other common forensic data sources.
 
 Features
 --------

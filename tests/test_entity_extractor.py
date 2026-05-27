@@ -1,6 +1,6 @@
 import pytest
 import pandas as pd
-from reconsadfc.reconsadfc import EntityExtractor, KnowledgeRepresentation
+from reconformal.reconformal import EntityExtractor, KnowledgeRepresentation
 
 @pytest.fixture
 def extractor():

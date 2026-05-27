@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "reconsadfc"
+version = "0.2.0"
+description = "Deprecated: this package has been renamed to reconformal. Install reconformal instead."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Muhammad Nur Yasir Utomo, Hudan Studiawan, Arkananta Masarief, Kemal Tangguh Aji Rajasa" }
+]
+dependencies = ["reconformal>=0.2.0"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["reconsadfc*"]

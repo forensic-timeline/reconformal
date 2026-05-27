@@ -1,6 +1,6 @@
-"""Public package exports for reconsadfc."""
+"""Public package exports for reconformal."""
 
-from .reconsadfc import (
+from .reconformal import (
     PlasoToFootprint,
     DataProcessor,
     EntityExtractor,

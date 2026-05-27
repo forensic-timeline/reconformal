@@ -1,7 +1,7 @@
 Quick Start
 ===========
 
-`reconsadfc` works both as a developer-friendly API and an instant Command-Line Interface (CLI) utility.
+`reconformal` works both as a developer-friendly API and an instant Command-Line Interface (CLI) utility.
 
 Python API Example
 ------------------
@@ -10,7 +10,7 @@ Below is an end-to-end example simulating a typical timeline reconstruction pipe
 
 .. code-block:: python
 
-   from reconsadfc import (
+   from reconformal import (
        DataProcessor,
        KnowledgeRepresentation,
        TimelineReconstruction,
@@ -51,18 +51,18 @@ Below is an end-to-end example simulating a typical timeline reconstruction pipe
 Command-Line Interface (CLI)
 ----------------------------
 
-Prefer running terminal commands? `reconsadfc` bundles a comprehensive CLI that automates all the aforementioned steps automatically.
+Prefer running terminal commands? `reconformal` bundles a comprehensive CLI that automates all the aforementioned steps automatically.
 
 .. code-block:: bash
 
    # Process data inside `./data`, output CSV files in `./outputs`, and plot a graph
-   reconsadfc --input-dir ./data --output-dir ./outputs --threshold 0.0 --draw-graph
+   reconformal --input-dir ./data --output-dir ./outputs --threshold 0.0 --draw-graph
 
 Alternatively, you could invoke it directly using python:
 
 .. code-block:: bash
 
-   python -m reconsadfc --input-dir ./data --output-dir ./outputs --draw-graph
+   python -m reconformal --input-dir ./data --output-dir ./outputs --draw-graph
 
 Output artifacts inside the destination directory include:
 

@@ -1,6 +1,6 @@
 import pytest
 import datetime
-from reconsadfc.reconsadfc import Correlation_Calculator
+from reconformal.reconformal import Correlation_Calculator
 
 @pytest.fixture
 def calc():

@@ -1,7 +1,7 @@
-﻿# reconsadfc
+﻿# reconformal
 
-[![PyPI version](https://badge.fury.io/py/reconsadfc.svg)](https://badge.fury.io/py/reconsadfc)
-[![Python Version](https://img.shields.io/pypi/pyversions/reconsadfc.svg)](https://pypi.org/project/reconsadfc/)
+[![PyPI version](https://badge.fury.io/py/reconformal.svg)](https://badge.fury.io/py/reconformal)
+[![Python Version](https://img.shields.io/pypi/pyversions/reconformal.svg)](https://pypi.org/project/reconformal/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Forensic event reconstruction and relationship analysis for SADFC-style footprint data.
@@ -33,14 +33,14 @@ This project provides a DataFrame-first pipeline to:
 Install the package directly from PyPI (once published):
 
 `bash
-pip install reconsadfc
+pip install reconformal
 `
 
 ### From source (local development)
 
 `bash
-git clone https://github.com/forensic-timeline/reconsadfc
-cd reconsadfc
+git clone https://github.com/forensic-timeline/reconformal
+cd reconformal
 pip install -e .
 `
 
@@ -56,7 +56,7 @@ The easiest way to use the library is via the
 un_pipeline function mapping, which automates file reading and DataFrame generation.
 
 `python
-from reconsadfc import run_pipeline
+from reconformal import run_pipeline
 
 # Run the complete reconstruction pipeline
 outputs = run_pipeline(
@@ -76,8 +76,8 @@ print("Generated Timeline Records:", len(timeline_df))
 ### Advanced Usage (Step-by-step)
 If you need finer execution control, you can import individual modules:
 `python
-from reconsadfc import DataProcessor, TimelineReconstruction, RelationshipAnalysis
-from reconsadfc.reconsadfc import KnowledgeRepresentation
+from reconformal import DataProcessor, TimelineReconstruction, RelationshipAnalysis
+from reconformal.reconformal import KnowledgeRepresentation
 
 # 1) Load and filter footprints
 processor = DataProcessor(file_dir="./data")
@@ -108,13 +108,13 @@ updated_timeline_df = analysis.update_timeline_df(scored_timeline_df)
 After installation, run from PowerShell or any shell:
 
 `bash
-reconsadfc --input-dir ./data --output-dir ./outputs --threshold 0.0 --draw-graph
+reconformal --input-dir ./data --output-dir ./outputs --threshold 0.0 --draw-graph
 `
 
 You can also run as a Python module:
 
 `bash
-python -m reconsadfc --input-dir ./data --output-dir ./outputs
+python -m reconformal --input-dir ./data --output-dir ./outputs
 `
 
 Generated outputs are written as CSV files, including timeline, correlation, relationship, summary, and metrics artifacts.
@@ -141,11 +141,11 @@ Input footprint data is expected to include fields commonly used by the pipeline
 ## Project Structure
 
 - 
-reconsadfc/reconsadfc.py - Core implementation and pipeline
+reconformal/reconformal.py - Core implementation and pipeline
 - 
-reconsadfc/__main__.py - Module execution entry point
+reconformal/__main__.py - Module execution entry point
 - 
-reconsadfc/__init__.py - Package exports
+reconformal/__init__.py - Package exports
 - pyproject.toml - Packaging metadata and console scripts
 - 	ests/ - Unit tests for package modules
 - docs/ - Sphinx documentation files

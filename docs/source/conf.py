@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'reconsadfc'
+project = 'reconformal'
 copyright = '2026, Muhammad Nur Yasir Utomo, Hudan Studiawan, Arkananta Masarief, Kemal Tangguh Aji Rajasa'
 author = 'Muhammad Nur Yasir Utomo, Hudan Studiawan, Arkananta Masarief, Kemal Tangguh Aji Rajasa'
 release = '0.0.1'

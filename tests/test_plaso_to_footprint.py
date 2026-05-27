@@ -1,6 +1,6 @@
 import pytest
 import pandas as pd
-from reconsadfc.reconsadfc import PlasoToFootprint
+from reconformal.reconformal import PlasoToFootprint
 
 def test_extract_url():
     # Test chrome_cache
