@@ -3,3 +3,4 @@ __pycache__
 scenario-1
 /reconformal-fix
 /reconformal/reconformal_outputs
+.pytest_cache
