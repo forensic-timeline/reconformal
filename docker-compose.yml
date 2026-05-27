@@ -1,0 +1,10 @@
+services:
+  reconformal:
+    build: .
+    volumes:
+      - ./data/input:/data/input:ro
+      - ./data/output:/data/output
+    command: >
+      --input-dir /data/input
+      --output-dir /data/output
+      --threshold 0.0

@@ -44,6 +44,34 @@ cd reconformal
 pip install -e .
 `
 
+### Via Docker (No Python Required)
+
+Build the image locally from the repository root:
+
+`bash
+git clone https://github.com/forensic-timeline/reconformal
+cd reconformal
+docker build -t reconformal .
+`
+
+Run by mounting your input CSV files and an output directory:
+
+`bash
+docker run --rm \
+  -v /path/to/your/csv/files:/data/input:ro \
+  -v /path/to/your/output:/data/output \
+  reconformal \
+  --input-dir /data/input --output-dir /data/output --threshold 0.0
+`
+
+Or with Docker Compose — place your CSV files in `./data/input/` and run:
+
+`bash
+docker compose up
+`
+
+Results will appear in `./data/output/`.
+
 ## Requirements
 
 - Python 3.9+

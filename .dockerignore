@@ -1,0 +1,14 @@
+.git
+.github
+.pytest_cache
+docs/
+tests/
+reconsadfc-stub/
+rename_plan.md
+dist/
+build/
+*.egg-info
+**/__pycache__
+**/*.pyc
+**/*.pyo
+reconformal/reconformal_outputs/
